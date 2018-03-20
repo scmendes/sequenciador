@@ -1,0 +1,71 @@
+<!doctype html>
+ 
+<html ng-app="tasks">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+    <title>Silvio tasklist</title>
+ 
+    <!-- CSS -->
+    <!-- Carregando o bootstrap-->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <style>
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+        #tasklist               { margin-bottom:30px; }
+        form button             { margin-top: 25px; }
+        form .form-group:first-child { padding-left: 0; }
+    </style>
+ 
+    <!-- JS -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>  
+    <script src="tasklistController.js"></script>
+ 
+</head>
+<body ng-controller="mainController">
+    <div class="container">
+ 
+        <div class="jumbotron text-center">
+            <h1> Sequenciador <span class="label label-info"> Última atualização: {{CurrentDate | date:'dd/MM/yyyy hh:mm:ss'}}</span></h1>
+        </div>
+ 
+         <div>
+            <h2> Totais de arquivos nas pastas</h2>
+        </div>
+        
+        <div id="tasklist">
+            <table class="table table-striped">
+ 
+                <tr>
+                    <th>Erro (/erro)</th>
+                    <th>Merge (/merge)</th>
+                    <th>Novo (/new)</th>
+                    <th>Processando (/proc)</th>
+                    <th>Temp (/temp)</th>
+                    <th>Updated</th>
+                    <th>Done</th>
+                    <th>Actions</th>
+                </tr>
+ 
+                <tr ng-repeat="task in tasks">
+                    <td>{{ task.errorTotalFiles}}</td>
+                    <td>{{ task.mergeTotalFiles}}</td>
+                    <td>{{ task.newTotalFiles}}</td>
+                    <td>{{ task.procTotalFiles}}</td>
+                    <td>{{ task.tempTotalFiles}}</td>
+                    <td>{{ TBD }}</td>
+                    <td>{{ TBD }}</td>
+                    <td>
+                        <button type="button" class="btn btn-default" ng-click="edit(task.key)">Edit</button>
+                        <button type="button" class="btn btn-primary" ng-click="remove(task.key)">Remove</button>
+                    </td>
+                </tr>
+ 
+            </table>
+        </div>
+    </div>
+ 
+</body>
+</html>
